@@ -8,3 +8,15 @@ before_install:
 script:
   - docker run jcsleiman/docker-react-ex npm run test -- --coverage
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-ex"
+  env: "DockerReactEx-env"
+  bucket_name: elasticbeanstalk-us-east-1-408844380046
+  bucket_path: "docker-react-ex"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
